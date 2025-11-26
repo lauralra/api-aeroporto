@@ -1,6 +1,8 @@
-package com.example.api_aeroporto;
+package com.example.api_aeroporto.repository;
 
 import java.util.Optional;
+
+import com.example.api_aeroporto.model.Aeroporto;
 
 public interface AeroportoRepository {
 

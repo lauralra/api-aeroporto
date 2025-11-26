@@ -1,11 +1,14 @@
-package com.example.api_aeroporto;
+package com.example.api_aeroporto.service;
 
 
 import java.io.File;
 import java.util.Scanner;
 
+import com.example.api_aeroporto.model.Aeroporto;
 
-public class ImportarAeroportos {
+
+public class ImportarAeroportosService {
+    
     public void importarAeroportos() {
     
     File file = new File("src/main/resources/templates/airports.csv");

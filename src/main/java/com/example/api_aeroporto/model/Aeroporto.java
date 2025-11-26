@@ -1,4 +1,4 @@
-package com.example.api_aeroporto;
+package com.example.api_aeroporto.model;
 
 import lombok.Getter;
 import lombok.Setter;
