@@ -6,6 +6,6 @@ import com.example.api_aeroporto.model.Aeroporto;
 
 public interface AeroportoRepository {
 
-    Optional<Aeroporto> findById(Integer idAeroporto);
+    Optional<Aeroporto> findById(int idAeroporto);
 
 }
