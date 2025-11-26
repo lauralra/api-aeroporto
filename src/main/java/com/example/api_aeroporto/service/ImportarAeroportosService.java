@@ -27,6 +27,7 @@ public class ImportarAeroportosService {
 
 
             if (campos.length >= 12) { 
+                
                 Aeroporto aeroporto = new Aeroporto();
                 
                 aeroporto.setIdAeroporto(Integer.parseInt(campos[0].trim())); 
