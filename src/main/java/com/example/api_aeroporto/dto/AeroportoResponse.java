@@ -1,6 +1,6 @@
 package com.example.api_aeroporto.dto;
 
-public class AeroportoRequest {
+public class AeroportoResponse {
 
     private String nomeAeroporto;
     private String codigoPaisIso;
