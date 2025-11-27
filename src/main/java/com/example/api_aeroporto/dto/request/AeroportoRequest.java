@@ -1,4 +1,4 @@
-package com.example.api_aeroporto.dto;
+package com.example.api_aeroporto.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
