@@ -23,7 +23,7 @@ public class AeroportoMapper {
         return aeroporto;
     }
     
-    public static AeroportoResponse toResponse ( Aeroporto aeroporto) {
+    public AeroportoResponse fromEntity ( Aeroporto aeroporto) {
 
         if (aeroporto == null) {
             return null;
