@@ -28,6 +28,9 @@ public class Aeroporto {
     @Column (name = "nome_aeroporto", nullable = false)
     private String nomeAeroporto;
 
+    @Column (name = "codigo_iata", nullable = false)
+    private String codigo_iata;
+
     @Column (name = "codigo_pais_iso", nullable = false, length = 2)
     private String codigoPaisIso;
 

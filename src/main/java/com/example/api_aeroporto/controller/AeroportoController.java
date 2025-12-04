@@ -35,6 +35,4 @@ public class AeroportoController {
         return ResponseEntity.ok(aeroportos);
     }
 
-
-
 }

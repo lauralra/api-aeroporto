@@ -33,6 +33,7 @@ public class AeroportoService {
 
         aeroportoExistente.setNomeAeroporto(aeroportoAtualizado.getNomeAeroporto());
         aeroportoExistente.setCodigoPaisIso(aeroportoAtualizado.getCodigoPaisIso());
+        aeroportoExistente.setCodigo_Iata(aeroportoAtualizado.getCodigo_iata());
         aeroportoExistente.setLatitude(aeroportoAtualizado.getLatitude());
         aeroportoExistente.setLongitude(aeroportoAtualizado.getLongitude());
         aeroportoExistente.setAltitude(aeroportoAtualizado.getAltitude());

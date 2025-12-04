@@ -1,9 +1,12 @@
 package com.example.api_aeroporto.dto.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.example.api_aeroporto.dto.request.AeroportoRequest;
 import com.example.api_aeroporto.dto.response.AeroportoResponse;
 import com.example.api_aeroporto.model.Aeroporto;
 
+@Component
 public class AeroportoMapper {
 
     public static Aeroporto toEntity ( AeroportoRequest request) {
@@ -16,6 +19,7 @@ public class AeroportoMapper {
         
         aeroporto.setNomeAeroporto(request.getNomeAeroporto());
         aeroporto.setCodigoPaisIso(request.getCodigoPaisIso());
+        aeroporto.setCodigo_iata(request.getCodigo_iata());
         aeroporto.setLatitude(request.getLatitude());
         aeroporto.setLongitude(request.getLongitude());
         aeroporto.setAltitude(request.getAltitude());
@@ -33,6 +37,7 @@ public class AeroportoMapper {
         
         response.setNomeAeroporto(aeroporto.getNomeAeroporto());
         response.setCodigoPaisIso(aeroporto.getCodigoPaisIso());
+        response.setCodigo_iata(aeroporto.getCodigo_iata());
         response.setLatitude(aeroporto.getLatitude());
         response.setLongitude(aeroporto.getLongitude());
         response.setAltitude(aeroporto.getAltitude());

@@ -19,6 +19,9 @@ public class AeroportoRequest {
     @NotBlank (message = "O código do país é obrigatório")
     private String codigoPaisIso;
 
+    @NotBlank (message = "O codigo iata é obrigatório")
+    private String codigo_iata;
+
     @NotNull (message = "A latitude é obrigatória")
     private double latitude;
 
