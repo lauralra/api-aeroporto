@@ -1,6 +1,7 @@
 package com.example.api_aeroporto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class AeroportoService {
         return aeroportoRepository.findById(idAeroporto).orElse(null);
     }
 
+    public Optional<Aeroporto> buscarAeroportoPorCodigo_iata (String codigo_iata){
+        return aeroportoRepository.findByCodigo_iata(codigo_iata);
+    }
+
     public Aeroporto atualizarAeroporto (Long id, Aeroporto aeroportoAtualizado ) {
 
         Aeroporto aeroportoExistente = aeroportoRepository.findById(id)
@@ -32,8 +37,8 @@ public class AeroportoService {
                 String.format("Aeroporto com id %d não encontrado", id)));
 
         aeroportoExistente.setNomeAeroporto(aeroportoAtualizado.getNomeAeroporto());
-        aeroportoExistente.setCodigoPaisIso(aeroportoAtualizado.getCodigoPaisIso());
-        aeroportoExistente.setCodigo_Iata(aeroportoAtualizado.getCodigo_iata());
+        aeroportoExistente.setCodigo_pais_iso(aeroportoAtualizado.getCodigo_pais_iso());
+        aeroportoExistente.setCodigo_iata(aeroportoAtualizado.getCodigo_iata());
         aeroportoExistente.setLatitude(aeroportoAtualizado.getLatitude());
         aeroportoExistente.setLongitude(aeroportoAtualizado.getLongitude());
         aeroportoExistente.setAltitude(aeroportoAtualizado.getAltitude());

@@ -6,6 +6,7 @@ import com.example.api_aeroporto.dto.request.AeroportoRequest;
 import com.example.api_aeroporto.dto.response.AeroportoResponse;
 import com.example.api_aeroporto.model.Aeroporto;
 
+
 @Component
 public class AeroportoMapper {
 
@@ -18,7 +19,7 @@ public class AeroportoMapper {
         Aeroporto aeroporto = new Aeroporto();
         
         aeroporto.setNomeAeroporto(request.getNomeAeroporto());
-        aeroporto.setCodigoPaisIso(request.getCodigoPaisIso());
+        aeroporto.setCodigo_pais_iso(request.getCodigo_pais_iso());
         aeroporto.setCodigo_iata(request.getCodigo_iata());
         aeroporto.setLatitude(request.getLatitude());
         aeroporto.setLongitude(request.getLongitude());
@@ -36,7 +37,7 @@ public class AeroportoMapper {
         AeroportoResponse response = new AeroportoResponse();
         
         response.setNomeAeroporto(aeroporto.getNomeAeroporto());
-        response.setCodigoPaisIso(aeroporto.getCodigoPaisIso());
+        response.setCodigo_pais_iso(aeroporto.getCodigo_pais_iso());
         response.setCodigo_iata(aeroporto.getCodigo_iata());
         response.setLatitude(aeroporto.getLatitude());
         response.setLongitude(aeroporto.getLongitude());

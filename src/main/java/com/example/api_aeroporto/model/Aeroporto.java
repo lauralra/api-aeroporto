@@ -32,7 +32,7 @@ public class Aeroporto {
     private String codigo_iata;
 
     @Column (name = "codigo_pais_iso", nullable = false, length = 2)
-    private String codigoPaisIso;
+    private String codigo_pais_iso;
 
     @Column (name = "latitude", nullable = false)
     private double latitude;
