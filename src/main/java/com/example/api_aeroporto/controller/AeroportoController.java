@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import com.example.api_aeroporto.dto.request.AeroportoRequest;
 import com.example.api_aeroporto.dto.response.AeroportoResponse;
 import com.example.api_aeroporto.service.AeroportoService;
 import com.example.api_aeroporto.model.Aeroporto;
+import com.example.api_aeroporto.repository.AeroportoRepository;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -33,6 +35,8 @@ public class AeroportoController {
 
     private AeroportoMapper aeroportoMapper;
 
+    AeroportoRepository aeroportoRepository;
+
     @GetMapping
     public ResponseEntity<List<AeroportoResponse>> listarAeroportos() {
 
@@ -45,9 +49,9 @@ public class AeroportoController {
     }
 
     @GetMapping ("/{iata}")
-    public ResponseEntity<AeroportoResponse> buscarAeroportoPorCodigo_iata( @PathVariable String codigo_iata ) {
+    public ResponseEntity<AeroportoResponse> buscarAeroportoPorCodigo_iata( @PathVariable String iata ) {
         
-        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( codigo_iata );
+        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( iata );
 
         if (aeroportoOptional.isPresent()) {
 
@@ -71,13 +75,13 @@ public class AeroportoController {
 
     }
 
-    @PutMapping ("{/iata}")
-    public ResponseEntity<AeroportoResponse> atualizarAeroporto (@Valid @RequestBody AeroportoRequest aeroportoRequest, @PathVariable String codigo_iata) {
+    @PutMapping ("/{iata}")
+    public ResponseEntity<AeroportoResponse> atualizarAeroporto (@Valid @RequestBody AeroportoRequest aeroportoRequest, @PathVariable String iata) {
 
-        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( codigo_iata );
+        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( iata );
 
         if ( aeroportoOptional.isPresent()) {
-            Aeroporto aeroportoAtualizado = aeroportoService.atualizarAeroporto( codigo_iata, aeroportoMapper.toEntity( aeroportoRequest ) );
+            Aeroporto aeroportoAtualizado = aeroportoService.atualizarAeroporto( iata, aeroportoMapper.toEntity( aeroportoRequest ) );
             
             AeroportoResponse response = aeroportoMapper.fromEntity(aeroportoAtualizado);
 
@@ -86,6 +90,15 @@ public class AeroportoController {
 
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+    }
+
+    @DeleteMapping ("/{iata}")
+    public void deletarAeroporto (@PathVariable String iata){
+
+        aeroportoService.excluirAeroporto(iata);
+
+        aeroportoRepository.deleteByCodigo_iata(iata);
+        
     }
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.api_aeroporto.repository.AeroportoRepository;
 import com.example.api_aeroporto.model.Aeroporto;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class AeroportoService {
 
         Aeroporto aeroportoExistente = aeroportoRepository.findByCodigo_iata( codigo_iata )
                 .orElseThrow(() -> new IllegalArgumentException (
-                String.format("Aeroporto com id %d não encontrado", codigo_iata)));
+                String.format("Aeroporto com codigo iata %d não encontrado", codigo_iata)));
 
         aeroportoExistente.setNomeAeroporto(aeroportoAtualizado.getNomeAeroporto());
         aeroportoExistente.setCodigo_pais_iso(aeroportoAtualizado.getCodigo_pais_iso());
@@ -55,8 +56,9 @@ public class AeroportoService {
         return aeroportoRepository.save(aeroportoExistente);
     }
 
-    public void excluirAeroporto(Long id) {
-        aeroportoRepository.deleteById(id);
+    @Transactional
+    public void excluirAeroporto(String codigo_iata) {
+        aeroportoRepository.deleteByCodigo_iata(codigo_iata);
     }
     
 }

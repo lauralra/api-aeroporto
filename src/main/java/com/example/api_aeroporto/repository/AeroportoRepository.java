@@ -12,5 +12,7 @@ public interface AeroportoRepository extends CrudRepository<Aeroporto, Long> {
 
     Optional<Aeroporto> findByCodigo_iata(String codigo_iata);
 
+    void deleteByCodigo_iata(String codigo_iata);
+
 
 }
