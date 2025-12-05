@@ -30,6 +30,11 @@ public class AeroportoService {
         return aeroportoRepository.findByCodigo_iata(codigo_iata);
     }
 
+    public Aeroporto salvarAeroporto (Aeroporto aeroporto){
+        return aeroportoRepository.save(aeroporto);
+    }
+
+
     public Aeroporto atualizarAeroporto (Long id, Aeroporto aeroportoAtualizado ) {
 
         Aeroporto aeroportoExistente = aeroportoRepository.findById(id)

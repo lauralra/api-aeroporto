@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class AeroportoResponse {
 
     private String nomeAeroporto;
-    private String codigoPaisIso;
+    private String codigo_pais_iso;
     private String codigo_iata;
     private double latitude;
     private double longitude;

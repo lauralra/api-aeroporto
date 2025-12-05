@@ -17,7 +17,7 @@ public class AeroportoRequest {
     private String nomeAeroporto;
 
     @NotBlank (message = "O código do país é obrigatório")
-    private String codigoPaisIso;
+    private String codigo_pais_iso;
 
     @NotBlank (message = "O codigo iata é obrigatório")
     private String codigo_iata;

@@ -10,7 +10,7 @@ import com.example.api_aeroporto.model.Aeroporto;
 @Component
 public class AeroportoMapper {
 
-    public static Aeroporto toEntity ( AeroportoRequest request) {
+    public Aeroporto toEntity ( AeroportoRequest request) {
 
         if (request == null) {
             return null;
