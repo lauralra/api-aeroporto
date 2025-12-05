@@ -30,16 +30,20 @@ public class AeroportoService {
         return aeroportoRepository.findByCodigo_iata(codigo_iata);
     }
 
+    public Optional<Aeroporto> buscarAeroportoPorId (int idAeroporto){
+        return aeroportoRepository.findById( idAeroporto );
+    }
+
     public Aeroporto salvarAeroporto (Aeroporto aeroporto){
         return aeroportoRepository.save(aeroporto);
     }
 
 
-    public Aeroporto atualizarAeroporto (Long id, Aeroporto aeroportoAtualizado ) {
+    public Aeroporto atualizarAeroporto (String codigo_iata, Aeroporto aeroportoAtualizado ) {
 
-        Aeroporto aeroportoExistente = aeroportoRepository.findById(id)
+        Aeroporto aeroportoExistente = aeroportoRepository.findByCodigo_iata( codigo_iata )
                 .orElseThrow(() -> new IllegalArgumentException (
-                String.format("Aeroporto com id %d não encontrado", id)));
+                String.format("Aeroporto com id %d não encontrado", codigo_iata)));
 
         aeroportoExistente.setNomeAeroporto(aeroportoAtualizado.getNomeAeroporto());
         aeroportoExistente.setCodigo_pais_iso(aeroportoAtualizado.getCodigo_pais_iso());

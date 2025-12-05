@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.api_aeroporto.dto.mapper.AeroportoMapper;
@@ -44,12 +45,14 @@ public class AeroportoController {
     }
 
     @GetMapping ("/{iata}")
-    public ResponseEntity<AeroportoResponse> buscarAeroportoPorCodigo_iata( @PathVariable String iata ) {
-        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( iata );
+    public ResponseEntity<AeroportoResponse> buscarAeroportoPorCodigo_iata( @PathVariable String codigo_iata ) {
+        
+        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( codigo_iata );
 
-    if (aeroportoOptional.isPresent()) {
-        AeroportoResponse response = aeroportoMapper.fromEntity( aeroportoOptional.get() );
-           return ResponseEntity.ok(response);
+        if (aeroportoOptional.isPresent()) {
+
+            AeroportoResponse response = aeroportoMapper.fromEntity( aeroportoOptional.get() );
+            return ResponseEntity.ok(response);
 
         } 
     
@@ -58,13 +61,30 @@ public class AeroportoController {
     }
 
     @PostMapping
-    public ResponseEntity CadastrarAeroporto ( @Valid @RequestBody AeroportoRequest aeroportoRequest) {
+    public ResponseEntity<AeroportoResponse> CadastrarAeroporto ( @Valid @RequestBody AeroportoRequest aeroportoRequest ) {
         
         Aeroporto novoAeroporto = aeroportoService.salvarAeroporto(aeroportoMapper.toEntity(aeroportoRequest));
 
         AeroportoResponse response = aeroportoMapper.fromEntity(novoAeroporto);
-        
+
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+    }
+
+    @PutMapping ("{/iata}")
+    public ResponseEntity<AeroportoResponse> atualizarAeroporto (@Valid @RequestBody AeroportoRequest aeroportoRequest, @PathVariable String codigo_iata) {
+
+        Optional<Aeroporto> aeroportoOptional = aeroportoService.buscarAeroportoPorCodigo_iata( codigo_iata );
+
+        if ( aeroportoOptional.isPresent()) {
+            Aeroporto aeroportoAtualizado = aeroportoService.atualizarAeroporto( codigo_iata, aeroportoMapper.toEntity( aeroportoRequest ) );
+            
+            AeroportoResponse response = aeroportoMapper.fromEntity(aeroportoAtualizado);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
