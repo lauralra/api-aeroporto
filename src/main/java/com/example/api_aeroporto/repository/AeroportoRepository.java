@@ -6,9 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.api_aeroporto.model.Aeroporto;
 
-public interface AeroportoRepository extends CrudRepository<Aeroporto, Long> {
-
-    Optional<Aeroporto> findById(int idAeroporto);
+public interface AeroportoRepository extends CrudRepository<Aeroporto, int> {
 
     Optional<Aeroporto> findByCodigo_iata(String codigo_iata);
 
