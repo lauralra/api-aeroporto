@@ -8,7 +8,7 @@ import com.example.api_aeroporto.repository.AeroportoRepository;
 import com.example.api_aeroporto.service.AeroportoService;
 
 
-public class SalvarAeroportoCorretoTest {
+public class NaoSalvarAeroportoIncorretoTest {
 
     @Autowired
     private AeroportoRepository aeroportoRepository; 
@@ -23,6 +23,14 @@ public class SalvarAeroportoCorretoTest {
         
         aeroportoInvalido.setCodigo_iata("GRUU"); 
         aeroportoInvalido.setNomeAeroporto("Aeroporto Invalido");
+
+        ConstraintViolationException exception = assertThrows(
+            ConstraintViolationException.class,
+
+            () -> aeroportoService.salvarAeroporto(aeroportoInvalido), 
+            
+            "Deveria ter lançado ConstraintViolationException ao tentar salvar IATA inválido."
+        );
         
     }
 
