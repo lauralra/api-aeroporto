@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.api_aeroporto.exception.AeroportoNaoEncontradoException;
 import com.example.api_aeroporto.repository.AeroportoRepository;
 import com.example.api_aeroporto.model.Aeroporto;
 
@@ -27,8 +28,14 @@ public class AeroportoService {
         return aeroportoRepository.findById(idAeroporto).orElse(null);
     }
 
-    public Optional<Aeroporto> buscarAeroportoPorCodigo_iata (String codigo_iata){
-        return aeroportoRepository.findByCodigo_iata(codigo_iata);
+    public Aeroporto buscarAeroportoPorCodigo_iata (String codigo_iata){
+
+        Optional<Aeroporto> aeroportoOptional = aeroportoRepository.findByCodigo_iata(codigo_iata);
+
+        return aeroportoOptional
+        .orElseThrow(() -> new AeroportoNaoEncontradoException (
+            String.format("Aeroporto com código iata %s não encontrado", codigo_iata)));
+        
     }
 
     public Optional<Aeroporto> buscarAeroportoPorId (int idAeroporto){

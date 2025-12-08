@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.example.api_aeroporto.service.ConverterPaisesIsoService;
 
-public class ConverteNomePaisParaIso {
+public class ConverteNomePaisParaIsoTest {
 
     @Test
     public void deveConverterNomePaisParaIsoCorretamente() {
