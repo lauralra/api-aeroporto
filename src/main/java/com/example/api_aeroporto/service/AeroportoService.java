@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.api_aeroporto.exception.AeroportoNaoEncontradoException;
-import com.example.api_aeroporto.repository.AeroportoRepository;
 import com.example.api_aeroporto.model.Aeroporto;
+import com.example.api_aeroporto.repository.AeroportoRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -43,7 +43,7 @@ public class AeroportoService {
     }
 
     public Aeroporto salvarAeroporto (Aeroporto aeroporto){
-        return aeroportoRepository.save(aeroporto);
+            return aeroportoRepository.save(aeroporto);
     }
 
 
