@@ -2,6 +2,7 @@ package com.example.api_aeroporto.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +18,11 @@ public class AeroportoRequest {
     private String nomeAeroporto;
 
     @NotBlank (message = "O código do país é obrigatório")
+    @Size (min = 2, max = 2, message = "O código do país deve conter 2 caracteres")
     private String codigo_pais_iso;
 
     @NotBlank (message = "O codigo iata é obrigatório")
+    @Size (min = 3, max = 3, message = "O código iata deve conter 3 caracteres")
     private String codigo_iata;
 
     @NotNull (message = "A latitude é obrigatória")
