@@ -37,7 +37,7 @@ public class ImportarAeroportosService {
                 aeroporto.setLatitude(Double.parseDouble(campos[6].trim()));
                 aeroporto.setLongitude(Double.parseDouble(campos[7].trim()));
                 aeroporto.setAltitude(Double.parseDouble(campos[8].trim()));
-                aeroporto.setCodigoPaisIso(campos[13].trim());
+                aeroporto.setCodigo_pais_iso(campos[13].trim());
 
                 // AeroportoRepository.save(aeroporto); 
             }
